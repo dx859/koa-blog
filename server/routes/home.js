@@ -1,13 +1,14 @@
 const router = require('koa-router')()
+const asserts = require('../middlewares/asserts')
 const homeController = require('../controllers/homeController')
+const adminController = require('../controllers/adminController')
 
 router
-  .get('/', homeController.index)
-  .get('/home/index', homeController.index)
-  .get('/home/notice', homeController.notice)
-  .get('/home/finish', homeController.finish)
-  .get('/home/help', homeController.help)
-  .get('/home/bid-detail', homeController.bidDetail)
+    .use(asserts)
+    .get('/', homeController.index)
+    .get('/home/index', homeController.index)
+    .get('/admin', adminController.index)
+
 
 module.exports = router
 

@@ -3,7 +3,7 @@ const logger = require('koa-logger')
 const bodyparser = require('koa-bodyparser')
 const json = require('koa-json')
 const pugview = require('./pugview')
-
+const router = require('../routes')
 
 const config = require('../config')
 
@@ -13,4 +13,6 @@ module.exports = compose([
     require('koa-static')(config.publicPath),
     logger(),
     pugview(config.viewPath),
+    router.routes(),
+    router.allowedMethods()
 ])
