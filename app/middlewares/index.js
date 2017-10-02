@@ -11,8 +11,8 @@ const router = require('../routes')
 
 module.exports = function (app, config) {
     return compose([
-        favicon(path.resolve(config.rootPath, 'favicon.ico')),
         require('koa-static')(config.publicPath),
+        favicon(path.resolve(config.rootPath, 'favicon.ico')),
         logger(),
         session(config.session, app),
         bodyparser({enableTypes: ['json', 'form', 'text']}),

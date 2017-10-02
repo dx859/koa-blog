@@ -1,8 +1,9 @@
+const authService = require('../services/authService')
+
 exports.index = async (ctx, next) => {
 
-    let n = ctx.session.views || 0;
+    let {username, email, password} = ctx.query
+    let res = await authService.addUser(username, email, password)
 
-    ctx.session.views = ++n;
-
-    ctx.body = n;
+    ctx.body = res;
 };
