@@ -1,4 +1,4 @@
-const path = require('path')
+const path = require('path');
 require('dotenv').config({path: path.resolve(__dirname, '..', '.env')});
 
 module.exports = {
@@ -12,8 +12,8 @@ module.exports = {
         overwrite: true,
         httpOnly: true,
         signed: true,
-        rolling: false,
-        // store:
+        rolling: true,
+        // store: require('./utils/sessStore'),
     },
     keys: ['koa blog secret', 'im a good boy'],
     db: {
@@ -23,4 +23,4 @@ module.exports = {
         password: process.env.DB_PASS,
         database: process.env.DB_NAME,
     }
-}
+};

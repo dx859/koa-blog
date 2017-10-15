@@ -1,5 +1,5 @@
 
 exports.index = async (ctx, next) => {
-    ctx.body = 'admin'
+    ctx.body = {user: ctx.session.user}
 
 }
