@@ -12,6 +12,12 @@ exports.index = async (ctx, next) => {
     ctx.body = session;
 };
 
+
+exports.edit = async (ctx, next) => {
+
+
+};
+
 exports.test = async (ctx, next) => {
     const db = require('../utils/dbschema');
 

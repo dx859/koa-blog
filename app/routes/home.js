@@ -10,7 +10,7 @@ router
     .get('/home/index', homeController.index)
     .get('/test', homeController.test)
     .get('/login', authController.login)
-
+    .get('/edit', homeController.edit)
 
 module.exports = router;
 
