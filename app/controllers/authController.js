@@ -2,7 +2,7 @@ const authService = require('../services/authService');
 const validator = require('../utils/validator/validator');
 
 exports.login = async (ctx, next) => {
-    ctx.render('auth.login')
+    ctx.render('auth.login', {redirectUrl: ctx.query.url})
 };
 
 
@@ -48,7 +48,13 @@ exports.session = async (ctx, next) => {
 
     if (res) {
         ctx.session.user = res;
-        ctx.body = 'ok';
+
+        if (ctx.query.url) {
+            ctx.redirect(ctx.query.url)
+        } else {
+            ctx.body = 'ok';
+        }
+
     } else {
         ctx.body = '用户名密码错误';
     }

@@ -1,0 +1,22 @@
+extends layout
+
+block title
+    title 编辑文章
+
+block css
+    style
+        include edit.css
+
+block js
+    script(src='https://cdn.bootcss.com/marked/0.3.6/marked.min.js')
+    script
+        include edit.js
+
+block content
+    div
+        input#post-title(type='text', placeholder='文章标题')
+        input#post-tag(type='text', placeholder='文章标签')
+        button#submit 创建文章
+    div
+        textarea#dxedit.left
+        div#markdown.right

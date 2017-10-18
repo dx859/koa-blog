@@ -27,7 +27,13 @@ homeRouter
 adminRouter
     .use(asserts)
     .use(auth)
-    .get('/', adminController.index);
+    .get('/', adminController.index)
+    .get('/post', adminController.editPost)
+    .get('/post/:id', adminController.getPost)
+    .post('/post', adminController.addPost)
+    .post('/post/:id', adminController.updatePost)
+    .post('/post/delete/:id', adminController.deletePost)
+
 
 authRouter
     .use(asserts)

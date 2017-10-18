@@ -7,7 +7,7 @@ block title
     title 登陆
 
 block content
-    form(method='post', action='/auth/session')
+    form(method='post', action=`/auth/session?url=${redirectUrl}`)
         div
             span.left-explain 用户名：
             input(name='username', type='text')
