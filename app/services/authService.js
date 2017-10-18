@@ -8,7 +8,15 @@ exports.passport = async(username, password) => {
 };
 
 exports.addUser = async(username, password, email) => {
-    email = md5(email);
-    await db('users').insert({username, password, email});
+    password = md5(password);
+    return await db('users').insert({username, password, email});
 };
 
+exports.updatePassword = async(username, newPassword) => {
+    return await db('users').where('username=?', username).update({password: md5(newPassword)})
+};
+
+exports.exists = async(table, column, value) => {
+    let res = await db(table).where(`${column}=?`, value).select();
+    return res.length !== 0
+};

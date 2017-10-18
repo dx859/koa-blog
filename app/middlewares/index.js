@@ -6,9 +6,7 @@ const json = require('koa-json');
 const favicon = require('koa-favicon');
 const session = require('koa-session');
 const pugview = require('./pugview');
-const homeRouter = require('../routes/home');
-const adminRouter = require('../routes/admin');
-
+const router = require('../routes');
 
 module.exports = function (app, config) {
     return compose([
@@ -19,9 +17,10 @@ module.exports = function (app, config) {
         bodyparser({enableTypes: ['json', 'form', 'text']}),
         json(),
         pugview(config.viewPath),
-        homeRouter.routes(),
-        homeRouter.allowedMethods(),
-        adminRouter.routes(),
-        adminRouter.allowedMethods(),
+        router.routes(),
+        // homeRouter.routes(),
+        // homeRouter.allowedMethods(),
+        // adminRouter.routes(),
+        // adminRouter.allowedMethods(),
     ])
 };

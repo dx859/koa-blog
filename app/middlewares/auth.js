@@ -1,10 +1,12 @@
 
 function auth(ctx, next) {
+
     if (ctx.session.user == null) {
-        ctx.redirect('/login');
+        ctx.redirect('/auth/login');
+    } else {
         return next()
     }
-    return next()
+
 }
 
 module.exports = auth;

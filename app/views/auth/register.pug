@@ -1,0 +1,26 @@
+extends layout
+
+block css
+    link(rel='stylesheet', href=assertsUrl('/css/login.css'))
+
+block title
+    title 注册
+
+block content
+    form(method='post', action='/auth/user')
+        div
+            span.left-explain 用户名：
+            input(name='username', type='text')
+        div
+            span.left-explain 密码：
+            input(name='password' type='password')
+        div
+            span.left-explain 确认密码：
+            input(name='password_confirmation' type='password')
+        div
+            span.left-explain 邮箱：
+            input(name='email' type='email')
+
+        div
+            span.left-explain
+            input(type='submit', value='登陆')

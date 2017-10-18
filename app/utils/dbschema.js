@@ -47,6 +47,22 @@ class DBSchema {
         return await db.query(sql, params);
     }
 
+    async update(data) {
+        let keys = Object.keys(data);
+        let params = Object.values(data);
+        let where = '';
+
+        if(!this._where) {
+            throw Error('更新语句必须有where条件')
+        } else {
+            where = ` WHERE ${this._where.join(' AND ')}`;
+            params = params.concat(this._whereParams);
+        }
+
+        let sql = `UPDATE ${this._table} SET ${keys.map(key=> key+'=?').join(',')}${where}`;
+        return await db.query(sql, params);
+    }
+
     async insert(data) {
         let keys = [], params = [], sql='';
         if (Array.isArray(data)) {
@@ -75,6 +91,19 @@ class DBSchema {
         }
 
         return await db.query(sql, params);
+    }
+
+    async delete() {
+        let where = '', params = [];
+        if(!this._where) {
+            throw Error('更新语句必须有where条件')
+        } else {
+            where = ` WHERE ${this._where.join(' AND ')}`;
+            params = params.concat(this._whereParams);
+        }
+        let sql = `DELETE FROM ${this._table}${where}`;
+
+        return await db.query(sql, params)
     }
 
     where(where, ...params) {

@@ -12,3 +12,12 @@ exports.md5 = function (str) {
     return hash.digest('hex')
 };
 
+
+exports.uppercaseFristWord = function (str){
+    if (typeof str !== 'string') {
+        throw Error('必须为字符串')
+    }
+
+    return str.charAt(0).toUpperCase() + str.substring(1);
+};
+
