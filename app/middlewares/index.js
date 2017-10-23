@@ -18,9 +18,5 @@ module.exports = function (app, config) {
         json(),
         pugview(config.viewPath),
         router.routes(),
-        // homeRouter.routes(),
-        // homeRouter.allowedMethods(),
-        // adminRouter.routes(),
-        // adminRouter.allowedMethods(),
     ])
 };

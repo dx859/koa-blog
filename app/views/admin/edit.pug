@@ -4,8 +4,7 @@ block title
     title 编辑文章
 
 block css
-    style
-        include edit.css
+    link(rel='stylesheet', href=assertsUrl('/css/edit.css'))
 
 block js
     script(src='https://cdn.bootcss.com/marked/0.3.6/marked.min.js')
@@ -14,9 +13,21 @@ block js
 
 block content
     div
-        input#post-title(type='text', placeholder='文章标题')
-        input#post-tag(type='text', placeholder='文章标签')
-        button#submit 创建文章
+        input#post-title(type='text', placeholder='文章标题', value=title)
+        form.tagform#post-tag-submit(method='post', action='/admin/tag')
+            input#post-tag(type='text', placeholder='文章标签')
+        button#submit 保存文章
+
+    div#tags
+        - tag_ids = tag_ids ? tag_ids.split(',') : [], tags = tags ? tags.split(',') : []
+        each tag,i in tags
+            span.tag(data-id=tag_ids[i])
+                b=tag
+                i ×
+
+
     div
-        textarea#dxedit.left
+        textarea#dxedit.left(spellcheck="false")=content
         div#markdown.right
+
+    input(type='hidden', value=id, id='postId')

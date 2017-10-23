@@ -21,3 +21,10 @@ exports.uppercaseFristWord = function (str){
     return str.charAt(0).toUpperCase() + str.substring(1);
 };
 
+exports.sleep = function (time) {
+    return new Promise(resolve => {
+        setTimeout(function () {
+            resolve()
+        }, time)
+    })
+};

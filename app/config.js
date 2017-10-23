@@ -8,7 +8,7 @@ module.exports = {
     assertsHost: process.env.ASSERTS_HOST || '',
     session: {
         key: 'sess_id',
-        maxAge: 1000*1000,
+        maxAge: 60*60*24*30*1000,
         overwrite: true,
         httpOnly: true,
         signed: true,

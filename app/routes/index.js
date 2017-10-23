@@ -28,11 +28,13 @@ adminRouter
     .use(asserts)
     .use(auth)
     .get('/', adminController.index)
-    .get('/post', adminController.editPost)
+    .get('/post', adminController.addPost)
     .get('/post/:id', adminController.getPost)
-    .post('/post', adminController.addPost)
+    .get('/post/edit/:id', adminController.editPost)
     .post('/post/:id', adminController.updatePost)
     .post('/post/delete/:id', adminController.deletePost)
+    .post('/tag', adminController.addTag)
+    .post('/post-tag/delete', adminController.deletePostTag)
 
 
 authRouter

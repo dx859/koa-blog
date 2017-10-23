@@ -26,7 +26,7 @@ class DBSchema {
         }
 
         if (this._where) {
-            where = ` WHERE ${this._where.join(' AND ')}`
+            where = ` WHERE ${this._where.join(' AND ')}`;
             params = params.concat(this._whereParams);
         }
 
@@ -47,13 +47,18 @@ class DBSchema {
         return await db.query(sql, params);
     }
 
+    async selectOne(...selects) {
+        this.limit(1);
+        return (await this.select(...selects))[0]
+    }
+
     async update(data) {
         let keys = Object.keys(data);
         let params = Object.values(data);
         let where = '';
 
         if(!this._where) {
-            throw Error('更新语句必须有where条件')
+            throw Error('update语句必须有where条件')
         } else {
             where = ` WHERE ${this._where.join(' AND ')}`;
             params = params.concat(this._whereParams);
@@ -96,7 +101,7 @@ class DBSchema {
     async delete() {
         let where = '', params = [];
         if(!this._where) {
-            throw Error('更新语句必须有where条件')
+            throw Error('delete语句必须有where条件')
         } else {
             where = ` WHERE ${this._where.join(' AND ')}`;
             params = params.concat(this._whereParams);
@@ -157,12 +162,6 @@ class DBSchema {
         this._limit = limit < 0 ? 0 : limit;
         this._offset = offset < 0 ? 0: offset;
         return this
-    }
-
-
-
-    queryBuild() {
-
     }
 
     async query(sql, parmas) {

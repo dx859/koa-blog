@@ -1,0 +1,11 @@
+extends layout
+
+block title
+    title=post.title
+
+
+block content
+    div
+        h1=post.title
+        a(href=`/admin/post/edit/${post.id}`) 编辑
+    div!=post.content
